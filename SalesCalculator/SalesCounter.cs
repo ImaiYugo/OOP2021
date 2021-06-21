@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace SalesCalculator {
     //売上集計クラス
     class SalesCounter {
