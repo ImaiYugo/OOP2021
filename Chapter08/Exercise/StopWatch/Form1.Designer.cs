@@ -31,13 +31,14 @@ namespace StopWatch {
             this.stopButton = new System.Windows.Forms.Button();
             this.rapButton = new System.Windows.Forms.Button();
             this.tmDisp = new System.Windows.Forms.Timer(this.components);
+            this.lbLap = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lbTD
             // 
-            this.lbTD.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lbTD.BackColor = System.Drawing.SystemColors.Info;
             this.lbTD.Font = new System.Drawing.Font("MS UI Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lbTD.Location = new System.Drawing.Point(1, 19);
+            this.lbTD.Location = new System.Drawing.Point(12, 19);
             this.lbTD.Name = "lbTD";
             this.lbTD.Size = new System.Drawing.Size(356, 67);
             this.lbTD.TabIndex = 0;
@@ -87,12 +88,23 @@ namespace StopWatch {
             this.rapButton.UseVisualStyleBackColor = true;
             this.rapButton.Click += new System.EventHandler(this.rapButton_Click);
             // 
+            // lbLap
+            // 
+            this.lbLap.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbLap.FormattingEnabled = true;
+            this.lbLap.ItemHeight = 21;
+            this.lbLap.Location = new System.Drawing.Point(392, 21);
+            this.lbLap.Name = "lbLap";
+            this.lbLap.Size = new System.Drawing.Size(136, 193);
+            this.lbLap.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(549, 234);
+            this.Controls.Add(this.lbLap);
             this.Controls.Add(this.rapButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.stopButton);
@@ -113,6 +125,7 @@ namespace StopWatch {
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button rapButton;
         private System.Windows.Forms.Timer tmDisp;
+        private System.Windows.Forms.ListBox lbLap;
     }
 }
 
