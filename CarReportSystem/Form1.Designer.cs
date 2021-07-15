@@ -32,7 +32,7 @@ namespace CarReportSystem {
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.cbAuther = new System.Windows.Forms.ComboBox();
+            this.cbAuthor = new System.Windows.Forms.ComboBox();
             this.gbMaker = new System.Windows.Forms.GroupBox();
             this.rbOther = new System.Windows.Forms.RadioButton();
             this.rbImport = new System.Windows.Forms.RadioButton();
@@ -130,13 +130,13 @@ namespace CarReportSystem {
             this.dtpDate.Size = new System.Drawing.Size(200, 19);
             this.dtpDate.TabIndex = 3;
             // 
-            // cbAuther
+            // cbAuthor
             // 
-            this.cbAuther.FormattingEnabled = true;
-            this.cbAuther.Location = new System.Drawing.Point(76, 62);
-            this.cbAuther.Name = "cbAuther";
-            this.cbAuther.Size = new System.Drawing.Size(247, 20);
-            this.cbAuther.TabIndex = 4;
+            this.cbAuthor.FormattingEnabled = true;
+            this.cbAuthor.Location = new System.Drawing.Point(76, 62);
+            this.cbAuthor.Name = "cbAuthor";
+            this.cbAuthor.Size = new System.Drawing.Size(247, 20);
+            this.cbAuthor.TabIndex = 4;
             // 
             // gbMaker
             // 
@@ -172,7 +172,6 @@ namespace CarReportSystem {
             this.rbImport.Name = "rbImport";
             this.rbImport.Size = new System.Drawing.Size(59, 16);
             this.rbImport.TabIndex = 1;
-            this.rbImport.TabStop = true;
             this.rbImport.Tag = "4";
             this.rbImport.Text = "外国車";
             this.rbImport.UseVisualStyleBackColor = true;
@@ -184,7 +183,6 @@ namespace CarReportSystem {
             this.rbSubaru.Name = "rbSubaru";
             this.rbSubaru.Size = new System.Drawing.Size(52, 16);
             this.rbSubaru.TabIndex = 1;
-            this.rbSubaru.TabStop = true;
             this.rbSubaru.Tag = "3";
             this.rbSubaru.Text = "スバル";
             this.rbSubaru.UseVisualStyleBackColor = true;
@@ -196,7 +194,6 @@ namespace CarReportSystem {
             this.rbHonda.Name = "rbHonda";
             this.rbHonda.Size = new System.Drawing.Size(51, 16);
             this.rbHonda.TabIndex = 1;
-            this.rbHonda.TabStop = true;
             this.rbHonda.Tag = "2";
             this.rbHonda.Text = "ホンダ";
             this.rbHonda.UseVisualStyleBackColor = true;
@@ -208,7 +205,6 @@ namespace CarReportSystem {
             this.rbNissan.Name = "rbNissan";
             this.rbNissan.Size = new System.Drawing.Size(47, 16);
             this.rbNissan.TabIndex = 1;
-            this.rbNissan.TabStop = true;
             this.rbNissan.Tag = "1";
             this.rbNissan.Text = "日産";
             this.rbNissan.UseVisualStyleBackColor = true;
@@ -220,7 +216,6 @@ namespace CarReportSystem {
             this.rbToyota.Name = "rbToyota";
             this.rbToyota.Size = new System.Drawing.Size(47, 16);
             this.rbToyota.TabIndex = 0;
-            this.rbToyota.TabStop = true;
             this.rbToyota.Tag = "0";
             this.rbToyota.Text = "トヨタ";
             this.rbToyota.UseVisualStyleBackColor = true;
@@ -245,7 +240,7 @@ namespace CarReportSystem {
             // 
             this.dgvRegistData.AllowUserToAddRows = false;
             this.dgvRegistData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistData.Location = new System.Drawing.Point(83, 314);
+            this.dgvRegistData.Location = new System.Drawing.Point(78, 314);
             this.dgvRegistData.MultiSelect = false;
             this.dgvRegistData.Name = "dgvRegistData";
             this.dgvRegistData.RowTemplate.Height = 21;
@@ -256,7 +251,7 @@ namespace CarReportSystem {
             // 
             // pbPicture
             // 
-            this.pbPicture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbPicture.Location = new System.Drawing.Point(436, 49);
             this.pbPicture.Name = "pbPicture";
             this.pbPicture.Size = new System.Drawing.Size(257, 197);
@@ -322,6 +317,7 @@ namespace CarReportSystem {
             this.btOpen.TabIndex = 9;
             this.btOpen.Text = "開く...";
             this.btOpen.UseVisualStyleBackColor = true;
+            this.btOpen.Click += new System.EventHandler(this.btOpen_Click);
             // 
             // btSave
             // 
@@ -331,6 +327,7 @@ namespace CarReportSystem {
             this.btSave.TabIndex = 9;
             this.btSave.Text = "保存...";
             this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // btExit
             // 
@@ -354,7 +351,7 @@ namespace CarReportSystem {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 531);
+            this.ClientSize = new System.Drawing.Size(714, 523);
             this.Controls.Add(this.btDataDelete);
             this.Controls.Add(this.btDataCorrect);
             this.Controls.Add(this.btExit);
@@ -368,7 +365,7 @@ namespace CarReportSystem {
             this.Controls.Add(this.tbReport);
             this.Controls.Add(this.gbMaker);
             this.Controls.Add(this.cbCarName);
-            this.Controls.Add(this.cbAuther);
+            this.Controls.Add(this.cbAuthor);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -399,7 +396,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.ComboBox cbAuther;
+        private System.Windows.Forms.ComboBox cbAuthor;
         private System.Windows.Forms.GroupBox gbMaker;
         private System.Windows.Forms.RadioButton rbOther;
         private System.Windows.Forms.RadioButton rbImport;
