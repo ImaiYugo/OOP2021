@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarReportSystem {
-    [Serializable]
     public partial class fmMain : Form {
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
 
@@ -25,7 +24,7 @@ namespace CarReportSystem {
         }
         //画像開くボタン
         private void btPictureOpen_Click(object sender, EventArgs e) {
-            if(ofdPictureOpen.ShowDialog()== DialogResult.OK) {
+            if (ofdPictureOpen.ShowDialog() == DialogResult.OK) {
                 pbPicture.Image = Image.FromFile(ofdPictureOpen.FileName);
             }
         }
@@ -37,23 +36,23 @@ namespace CarReportSystem {
         //追加ボタン
         private void btDataAdd_Click(object sender, EventArgs e) {
 
-            if(cbAuthor.Text == "" || cbCarName.Text == "") {
+            if (cbAuther.Text == "" || cbCarName.Text == "") {
                 MessageBox.Show("入力されていません");
                 return;
             }
 
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value,
-                Auther = cbAuthor.Text,
+                Auther = cbAuther.Text,
                 Maker = selectedGroup(),
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
                 Picture = pbPicture.Image
             };
             listCarReport.Add(carReport);   //１レコード追加
-            
+
             //コンボボックスの履歴登録
-            setCbAuthor(cbAuthor.Text);
+            setCbAuther(cbAuther.Text);
             setCbCarName(cbCarName.Text);
         }
 
@@ -62,16 +61,16 @@ namespace CarReportSystem {
 
             foreach (var rb in gbMaker.Controls) {
                 if (((RadioButton)rb).Checked) {
-                    return  (CarReport.MakerGroup)int.Parse(((string)((RadioButton)rb).Tag));
+                    return (CarReport.MakerGroup)int.Parse(((string)((RadioButton)rb).Tag));
                 }
             }
             return CarReport.MakerGroup.その他;
         }
 
         //コンボボックスに記録者をセットする
-        private void setCbAuthor(string author) {
-            if (!cbAuthor.Items.Contains(author)) {
-                cbAuthor.Items.Add(author);
+        private void setCbAuther(string author) {
+            if (!cbAuther.Items.Contains(author)) {
+                cbAuther.Items.Add(author);
             }
         }
         //コンボボックスに車名をセットする
@@ -83,14 +82,14 @@ namespace CarReportSystem {
 
         private void dgvRegistData_CellClick(object sender, DataGridViewCellEventArgs e) {
             if (e.RowIndex == -1)
-                return;                
+                return;
 
             //選択された行のデータを取得
             CarReport selectedCar = listCarReport[e.RowIndex];
 
             //取得したデータ項目を各コントロールへ設定
             dtpDate.Value = selectedCar.Date;
-            cbAuthor.Text = selectedCar.Auther;
+            cbAuther.Text = selectedCar.Auther;
             setMakerRadioButton(selectedCar.Maker);
             cbCarName.Text = selectedCar.CarName;
             tbReport.Text = selectedCar.Report;
@@ -121,12 +120,14 @@ namespace CarReportSystem {
         }
 
         private void btDataDelete_Click(object sender, EventArgs e) {
-            listCarReport.RemoveAt( dgvRegistData.CurrentRow.Index );
+            if (dgvRegistData.CurrentCell != null) {
+                listCarReport.RemoveAt(dgvRegistData.CurrentRow.Index);
+            }
         }
 
         private void btDataCorrect_Click(object sender, EventArgs e) {
             listCarReport[dgvRegistData.CurrentRow.Index].UpDate(dtpDate.Value,
-                                                                cbAuthor.Text,
+                                                                cbAuther.Text,
                                                                 selectedGroup(),
                                                                 cbCarName.Text,
                                                                 tbReport.Text,
@@ -135,29 +136,54 @@ namespace CarReportSystem {
             dgvRegistData.Refresh(); //コントロールの強制再描画
         }
 
-        private void btSave_Click(object sender, EventArgs e){
-            if (sfdFileSave.ShowDialog() == DialogResult.OK){
-                var bf = new BinaryFormatter();
+        private void btSave_Click(object sender, EventArgs e) {
+            if (sfdFileSave.ShowDialog() == DialogResult.OK) {
+                // バイナリ形式でシリアル化
+                try {
+                    var bf = new BinaryFormatter();
 
-                using(FileStream fs = File.Open(sfdFileSave.FileName,FileMode.Create)){
-                    bf.Serialize(fs,listCarReport);
-	            }
-            }
+                    using (FileStream fs = File.Open(sfdFileSave.FileName, FileMode.Create)) {
+                        bf.Serialize(fs, listCarReport);
+                    }
+                }
+                catch(Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+                }
+                
         }
 
-        private void btOpen_Click(object sender,EventArgs e) {
-            if(ofdFileOpen.ShowDialog() == DialogResult.OK) {
-                var bf = new BinaryFormatter();
-                //バイナリ形式で逆シリアル化
-                using (FileStream fs = File.Open(ofdFileOpen.FileName,FileMode.Open,FileAccess.Read)) {
-                    //逆シリアル化して読み込む
-                    listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
-                    dgvRegistData.DataSource = null;
-                    dgvRegistData.DataSource = listCarReport;
-                    
+        private void btOpen_Click(object sender, EventArgs e) {
+            if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
+                // バイナリ形式で逆シリアル化
+                try {
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(ofdFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
+                        // 逆シリアル化して読み込む
+                        listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvRegistData.DataSource = null;
+                        dgvRegistData.DataSource = listCarReport;
+                    }                
                 }
-            }
+                catch(Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+
+                //読み込んだデータを各コンボボックスに登録する
+                foreach (var item in listCarReport) {
+                    setCbAuther(item.Auther);
+                    setCbCarName(item.CarName);
+                }
+
+                //データグリッドビューから取得
+                for (int i = 0; i < dgvRegistData.RowCount; i++) {
+                    setCbAuther(dgvRegistData.Rows[i].Cells[1].Value.ToString());
+                    setCbCarName(dgvRegistData.Rows[i].Cells[1].Value.ToString());
+                }
+            }            
+        }
+        private void fmMain_Load(object sender, EventArgs e) {
+            dgvRegistData.Columns[5].Visible = false;
         }
     }
-
 }

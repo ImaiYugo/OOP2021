@@ -32,7 +32,7 @@ namespace CarReportSystem {
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.cbAuthor = new System.Windows.Forms.ComboBox();
+            this.cbAuther = new System.Windows.Forms.ComboBox();
             this.gbMaker = new System.Windows.Forms.GroupBox();
             this.rbOther = new System.Windows.Forms.RadioButton();
             this.rbImport = new System.Windows.Forms.RadioButton();
@@ -130,13 +130,13 @@ namespace CarReportSystem {
             this.dtpDate.Size = new System.Drawing.Size(200, 19);
             this.dtpDate.TabIndex = 3;
             // 
-            // cbAuthor
+            // cbAuther
             // 
-            this.cbAuthor.FormattingEnabled = true;
-            this.cbAuthor.Location = new System.Drawing.Point(76, 62);
-            this.cbAuthor.Name = "cbAuthor";
-            this.cbAuthor.Size = new System.Drawing.Size(247, 20);
-            this.cbAuthor.TabIndex = 4;
+            this.cbAuther.FormattingEnabled = true;
+            this.cbAuther.Location = new System.Drawing.Point(76, 62);
+            this.cbAuther.Name = "cbAuther";
+            this.cbAuther.Size = new System.Drawing.Size(247, 20);
+            this.cbAuther.TabIndex = 4;
             // 
             // gbMaker
             // 
@@ -365,7 +365,7 @@ namespace CarReportSystem {
             this.Controls.Add(this.tbReport);
             this.Controls.Add(this.gbMaker);
             this.Controls.Add(this.cbCarName);
-            this.Controls.Add(this.cbAuthor);
+            this.Controls.Add(this.cbAuther);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -377,6 +377,7 @@ namespace CarReportSystem {
             this.MaximizeBox = false;
             this.Name = "fmMain";
             this.Text = "試乗レポート管理システム";
+            this.Load += new System.EventHandler(this.fmMain_Load);
             this.gbMaker.ResumeLayout(false);
             this.gbMaker.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistData)).EndInit();
@@ -396,7 +397,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.ComboBox cbAuthor;
+        private System.Windows.Forms.ComboBox cbAuther;
         private System.Windows.Forms.GroupBox gbMaker;
         private System.Windows.Forms.RadioButton rbOther;
         private System.Windows.Forms.RadioButton rbImport;
