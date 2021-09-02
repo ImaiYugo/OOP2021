@@ -90,9 +90,10 @@ namespace Exercise01
             var element = new XElement("ballsport",
                  new XElement("name", "サッカー", new XAttribute("kanji", "蹴球")),
                  new XElement("teammembers", "11"),
-                 new XElement("firstplayed", "186")
+                 new XElement("firstplayed", "1863")
               );
             xdoc.Root.Add(element);
+            xdoc.Save(newfile);
         }
     }
 }
