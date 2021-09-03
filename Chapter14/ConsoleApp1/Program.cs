@@ -10,19 +10,47 @@ using System.Xml.Linq;
 
 namespace Section04
 {
+    
     class Program
     {
+        public static int num = 0;
         static void Main(string[] args)
         {
+            Console.WriteLine("1:前橋");
+            Console.WriteLine("2:みなかみ");
+            Console.WriteLine("3:宇都宮");
+            Console.WriteLine("4:水戸");
+            Console.WriteLine("9:その他(直接入力)");
+            Console.Write("入力:");
+            num = int.Parse(Console.ReadLine());
+            if(num== 9)
+            {
+                Console.Write("地域コードを入力:");
+                num = int.Parse(Console.ReadLine());
+            }
             new Program();      
         }
 
         public Program()
         {
-            // DownloadString();
-            //DownloadFileAsync();
-            //OpenReadSample();
-            var results = GetWeatherReportFromYahoo(4610);
+            int code = 0;
+            if(num == 1)
+            {
+                code = 4210;
+            }if(num == 2){
+                code = 4220;
+            }
+            if(num == 3)
+            {
+                code = 4110;
+            }if(num == 4)
+            {
+                code = 4010;
+            }if (num == 9)
+            {
+                code = num;
+            }
+            var results = GetWeatherReportFromYahoo(code);
             foreach (var s in results)
             {
                 Console.WriteLine(s);
@@ -30,6 +58,7 @@ namespace Section04
             Console.ReadLine();
         }
 
+        #region
         public void DownloadString()
         {
             var wc = new WebClient();
@@ -74,6 +103,8 @@ namespace Section04
 
             }
         }
+
+        #endregion
 
 
         //リスト14-19
