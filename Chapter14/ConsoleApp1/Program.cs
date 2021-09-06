@@ -25,7 +25,7 @@ namespace Section04
     { "みなかみ",4220 },
     { "宇都宮" ,4110},
     { "水戸",4010},
-    { "さいたま",4999},
+    { "さいたま",4310},
 
 };
         //コードを保存する
@@ -59,7 +59,20 @@ namespace Section04
 
             var selectArea = Console.ReadLine();
             int pos = int.Parse(selectArea);
-            var results = GetWeatherReportFromYahoo(cityCode[pos - 1]);
+
+            IEnumerable<string> results;
+
+            if(pos !=9)
+            {
+                results = GetWeatherReportFromYahoo(cityCode[pos - 1]);
+            }
+            else
+            {
+                //その他の場合
+                Console.Write("都市コードを入力:");
+                var inputcode = Console.ReadLine();
+                results = GetWeatherReportFromYahoo(int.Parse(inputcode));
+            }
             foreach (var s in results)
             {
                 Console.WriteLine(s);
