@@ -10,53 +10,108 @@ using System.Xml.Linq;
 
 namespace Section04
 {
+    class CityData
+    {
+        string city;
+        int code;
+    }
     
     class Program
     {
-        public static int num = 0;
+
+        Dictionary<string, int> AreaDic = new Dictionary<string, int>()
+{
+    { "前橋",4210 },
+    { "みなかみ",4220 },
+    { "宇都宮" ,4110},
+    { "水戸",4010},
+    { "さいたま",4999},
+
+};
+        //コードを保存する
+        List<int> cityCode = new List<int>();
+
         static void Main(string[] args)
         {
-            Console.WriteLine("1:前橋");
-            Console.WriteLine("2:みなかみ");
-            Console.WriteLine("3:宇都宮");
-            Console.WriteLine("4:水戸");
-            Console.WriteLine("9:その他(直接入力)");
-            Console.Write("入力:");
-            num = int.Parse(Console.ReadLine());
-            if(num== 9)
-            {
-                Console.Write("地域コードを入力:");
-                num = int.Parse(Console.ReadLine());
-            }
-            new Program();      
+            new Program();
+
         }
 
+        //コンストラクタ
         public Program()
         {
-            int code = 0;
-            if(num == 1)
+            Console.WriteLine("yahoo!週間天気予報");
+            Console.WriteLine();    //改行
+            Console.WriteLine("地域コードを入力");
+
+            int num = 1;
+            foreach (KeyValuePair<string,int> pair in AreaDic)
             {
-                code = 4210;
-            }if(num == 2){
-                code = 4220;
+                Console.WriteLine("{0}:{1}", num++, pair.Key);
+                cityCode.Add(pair.Value);   //コードをリストに保存
+
             }
-            if(num == 3)
-            {
-                code = 4110;
-            }if(num == 4)
-            {
-                code = 4010;
-            }if (num == 9)
-            {
-                code = num;
-            }
-            var results = GetWeatherReportFromYahoo(code);
+
+            Console.WriteLine("9:その他(直接入力)");
+            Console.WriteLine();    //改行
+
+            Console.WriteLine(">");
+
+            var selectArea = Console.ReadLine();
+            int pos = int.Parse(selectArea);
+            var results = GetWeatherReportFromYahoo(cityCode[pos - 1]);
             foreach (var s in results)
             {
                 Console.WriteLine(s);
             }
-            Console.ReadLine();
+            Console.ReadLine(); //入力待ち
         }
+
+
+        //public static int num = 0;
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine("1:前橋");
+        //    Console.WriteLine("2:みなかみ");
+        //    Console.WriteLine("3:宇都宮");
+        //    Console.WriteLine("4:水戸");
+        //    Console.WriteLine("9:その他(直接入力)");
+        //    Console.Write("入力:");
+        //    num = int.Parse(Console.ReadLine());
+        //    if(num== 9)
+        //    {
+        //        Console.Write("地域コードを入力:");
+        //        num = int.Parse(Console.ReadLine());
+        //    }
+        //    new Program();      
+        //}
+
+        //public Program()
+        //{
+        //    int code = 0;
+        //    if(num == 1)
+        //    {
+        //        code = 4210;
+        //    }if(num == 2){
+        //        code = 4220;
+        //    }
+        //    if(num == 3)
+        //    {
+        //        code = 4110;
+        //    }if(num == 4)
+        //    {
+        //        code = 4010;
+        //    }if (num == 9)
+        //    {
+        //        code = num;
+        //    }
+        //    var results = GetWeatherReportFromYahoo(code);
+        //    foreach (var s in results)
+        //    {
+        //        Console.WriteLine(s);
+        //    }
+        //    Console.ReadLine();
+        //}
 
         #region
         public void DownloadString()
