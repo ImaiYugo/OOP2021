@@ -31,14 +31,14 @@ namespace RssReader
             using (var wc = new WebClient())
             {
                 wc.Headers.Add("Content-type", "charset=UTF-8");
-                var url = new Uri(uri);
-                var stream = wc.OpenRead(tbUrl.Text);
+               // var url = new Uri(uri);
+                //var stream = wc.OpenRead(tbUrl.Text);
 
-                XDocument xdoc = XDocument.Load(stream);
+                XDocument xdoc = XDocument.Load(tbUrl.Text);
                 var nodes = xdoc.Root.Descendants("title");
                 foreach (var node in nodes)
                 {
-                    lbTitles.Items.Add(Regex.Replace(node.Value, "[|]|- Yahoo!天気・災害", ""));
+                    lbTitles.Items.Add(node.Value);
                 }
             }
         }
