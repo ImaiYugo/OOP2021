@@ -49,20 +49,22 @@ namespace RssReader
             // 
             // tbUrl
             // 
-            this.tbUrl.Location = new System.Drawing.Point(203, 40);
+            this.tbUrl.Location = new System.Drawing.Point(233, 40);
             this.tbUrl.Margin = new System.Windows.Forms.Padding(4);
             this.tbUrl.Name = "tbUrl";
-            this.tbUrl.Size = new System.Drawing.Size(561, 31);
+            this.tbUrl.Size = new System.Drawing.Size(531, 31);
             this.tbUrl.TabIndex = 1;
             // 
             // lbTitles
             // 
+            this.lbTitles.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbTitles.FormattingEnabled = true;
-            this.lbTitles.ItemHeight = 24;
+            this.lbTitles.ItemHeight = 18;
             this.lbTitles.Location = new System.Drawing.Point(12, 84);
             this.lbTitles.Name = "lbTitles";
-            this.lbTitles.Size = new System.Drawing.Size(203, 340);
+            this.lbTitles.Size = new System.Drawing.Size(183, 346);
             this.lbTitles.TabIndex = 2;
+            this.lbTitles.Click += new System.EventHandler(this.lbTitles_Click);
             // 
             // wbBrowser
             // 
