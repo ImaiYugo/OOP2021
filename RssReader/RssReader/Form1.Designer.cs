@@ -60,7 +60,7 @@ namespace RssReader
             this.lbTitles.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbTitles.FormattingEnabled = true;
             this.lbTitles.ItemHeight = 18;
-            this.lbTitles.Location = new System.Drawing.Point(12, 84);
+            this.lbTitles.Location = new System.Drawing.Point(22, 84);
             this.lbTitles.Name = "lbTitles";
             this.lbTitles.Size = new System.Drawing.Size(183, 346);
             this.lbTitles.TabIndex = 2;
