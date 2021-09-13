@@ -78,6 +78,7 @@ namespace RssReader
             string link = (items.ToArray())[lbTitles.SelectedIndex].Link;   //配列へ変換して[]でアクセス
             wbBrowser.Url = new Uri(link);
 
+            //description
             
         }
 
