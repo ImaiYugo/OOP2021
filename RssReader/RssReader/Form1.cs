@@ -34,8 +34,7 @@ namespace RssReader
             using (var wc = new WebClient())
             {
                 wc.Headers.Add("Content-type", "charset=UTF-8");
-                var url = new Uri(uri);
-                var stream = wc.OpenRead(url);
+                var stream = wc.OpenRead(uri);
                 XDocument xdoc = XDocument.Load(stream);
 
                 items = xdoc.Root.Descendants("item").Select(x => new ItemData
@@ -43,7 +42,7 @@ namespace RssReader
                     Title = (string)x.Element("title"),
                     Link = (string)x.Element("link"),
                     PubDate = (DateTime)x.Element("pubDate"),
-                    Description = (string)x.Element("Description")
+                    Description = (string)x.Element("description")
 
                 });
 
@@ -76,12 +75,19 @@ namespace RssReader
         {
             //wbBrowser.Url = new Uri(link[lbTitles.SelectedIndex]);
             string link = (items.ToArray())[lbTitles.SelectedIndex].Link;   //配列へ変換して[]でアクセス
-            wbBrowser.Url = new Uri(link);
+            //wbBrowser.Url = new Uri(link);
 
-            //description
-            
+            lbD.Text = "概要\n";
+            lbD.Text += (items.ToArray())[lbTitles.SelectedIndex].PubDate+"\n";
+            lbD.Text += (items.ToArray())[lbTitles.SelectedIndex].Description;
+
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            var wbform = new Form2((items.ToArray())[lbTitles.SelectedIndex].Link);
+            wbform.Show();
+        }
     }
 }
