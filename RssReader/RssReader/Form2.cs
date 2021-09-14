@@ -25,6 +25,45 @@ namespace RssReader
         private void Form2_Load(object sender, EventArgs e)
         {
             wbTwo.Url = new Uri(url);
+
+        }
+
+        //private void wbTwo_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        //{
+        //    if(wbTwo.CanGoBack == true)
+        //    {
+
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //    if (wbTwo.CanGoForward == true)
+        //    {
+        //    }
+        //    else
+        //    {
+
+        //    }
+
+        //}
+
+        private void btBack_Click(object sender, EventArgs e)
+        {
+            if(wbTwo.CanGoBack)
+            {
+                wbTwo.GoBack();
+            }
+            
+        }
+
+        private void btFoward_Click(object sender, EventArgs e)
+        {
+            if(wbTwo.CanGoForward)
+            {
+                wbTwo.GoForward();
+            }
+            
         }
     }
 }

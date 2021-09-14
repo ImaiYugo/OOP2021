@@ -34,7 +34,7 @@ namespace RssReader
             this.lbTitles = new System.Windows.Forms.ListBox();
             this.btRead = new System.Windows.Forms.Button();
             this.lbD = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btWeb = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -86,23 +86,23 @@ namespace RssReader
             this.lbD.Size = new System.Drawing.Size(592, 209);
             this.lbD.TabIndex = 5;
             // 
-            // button1
+            // btWeb
             // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(720, 381);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 42);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "webの表示";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btWeb.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btWeb.Location = new System.Drawing.Point(720, 381);
+            this.btWeb.Name = "btWeb";
+            this.btWeb.Size = new System.Drawing.Size(152, 42);
+            this.btWeb.TabIndex = 6;
+            this.btWeb.Text = "webの表示";
+            this.btWeb.UseVisualStyleBackColor = true;
+            this.btWeb.Click += new System.EventHandler(this.btWeb_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 448);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btWeb);
             this.Controls.Add(this.lbD);
             this.Controls.Add(this.btRead);
             this.Controls.Add(this.lbTitles);
@@ -124,7 +124,7 @@ namespace RssReader
         private System.Windows.Forms.ListBox lbTitles;
         private System.Windows.Forms.Button btRead;
         private System.Windows.Forms.Label lbD;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btWeb;
         public System.Windows.Forms.TextBox tbUrl;
     }
 }

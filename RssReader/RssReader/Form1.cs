@@ -83,7 +83,7 @@ namespace RssReader
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btWeb_Click(object sender, EventArgs e)
         {
             
             var wbform = new Form2((items.ToArray())[lbTitles.SelectedIndex].Link);
