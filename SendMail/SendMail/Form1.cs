@@ -26,11 +26,6 @@ namespace SendMail
         {
             InitializeComponent();
 
-            var xmlDoc = new XmlDocument();
-            var rootElem = new XElement("Info");
-
-
-
         }
 
         private void btSend_Click(object sender, EventArgs e)
@@ -90,6 +85,22 @@ namespace SendMail
 
         private void btConfig_Click(object sender, EventArgs e) {
             configForm.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            var xdoc = XDocument.Load("mailsetting.xml");
+            var xelements = xdoc.Root.Elements();
+            var xhost = (string)xdoc.Element("Host");
+            var xport = (int)xdoc.Element("Port");
+            var xmail = (string)xdoc.Element("MailAddr");
+            var xpass = (string)xdoc.Element("Pass");
+            var xssl = (bool)xdoc.Element("Ssl");
+
+            settings.Host = xhost;
+            settings.Port = xport;
+            settings.MailAddr = xmail;
+            settings.Pass = xpass;
+            settings.Ssl = xssl;
         }
     }
 }
