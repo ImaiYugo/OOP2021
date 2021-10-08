@@ -52,7 +52,7 @@ namespace SendMail
                     //Set = false;
 
                 }catch(SecurityException ex) {
-                    Set = false;
+                    //Set = false;
 
                 }
 
