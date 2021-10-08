@@ -31,6 +31,11 @@ namespace SendMail
 
         private void btSend_Click(object sender, EventArgs e)
         {
+            if (!settings.Set || String.IsNullOrWhiteSpace(tbMessage.Text)) {
+                MessageBox.Show("送信情報を設定してください");
+                return;
+            }
+
             try
             {
                 //メール送信のためのインスタンスを生成
@@ -81,6 +86,12 @@ namespace SendMail
             }
             else {
                 MessageBox.Show("送信完了");
+                tbTo.Text = null;
+                tbCc.Text = null;
+                tbBcc.Text = null;
+                tbTitle.Text = null;
+                tbMessage = null;
+                
             }         
         }
 
@@ -90,10 +101,21 @@ namespace SendMail
 
         private void Form1_Load(object sender, EventArgs e) {
 
-            using (var reader = XmlReader.Create("mailsetting.xml")) {
-                var serializer = new DataContractSerializer(typeof(Settings));
-                var readData = serializer.ReadObject(reader) as Settings;
+            //起動時に送信情報が未設定の場合設定画面を表示する
+            if(!settings.Set) {
+                configForm.ShowDialog();
             }
+
+            //XMLファイルを読み込み(逆シリアル化)
+            //using (var reader = XmlReader.Create("mailsetting.xml")) {
+            //    var serializer = new DataContractSerializer(typeof(Settings));
+            //    var readSettings = serializer.ReadObject(reader) as Settings;
+            //    settings.Host = readSettings.Host;
+            //    settings.Port = readSettings.Port;
+            //    settings.MailAddr = readSettings.MailAddr;
+            //    settings.Pass = readSettings.Pass;
+            //    settings.Ssl = readSettings.Ssl;
+            //}
 
             //var xdoc = XDocument.Load("mailsetting.xml");
             //var xelements = xdoc.Root.Elements();
@@ -108,6 +130,20 @@ namespace SendMail
             //settings.MailAddr = xmail;
             //settings.Pass = xpass;
             //settings.Ssl = xssl;
+
+
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void 新規作成NToolStripMenuItem_Click(object sender, EventArgs e) {
+            tbTo.Text = null;
+            tbCc.Text = null;
+            tbBcc.Text = null;
+            tbTitle.Text = null;
+            tbMessage.Text = null;
         }
     }
 }
