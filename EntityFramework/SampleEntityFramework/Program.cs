@@ -144,8 +144,11 @@ namespace SampleEntityFramework
         private static void P3() {
             using (var db = new BooksDbContext()) {
 
-                foreach(var book in db.Books.OrderBy(b => b.Author.Name)) {
-
+                var books = db.Books.Where(b => b.Title.Length == db.Books.Max(x => x.Title.Length));
+                foreach (var book in books) {
+                    Console.WriteLine("{0} {1} {2} ({3:yyyy/MM/dd})",
+                        book.Title, book.PublishedYear,
+                        book.Author.Name, book.Author.Birthday);
                 }
 
                 //var longName = db.Books.Where(b => b.Title.Length == db.Books.Max(x => x.Title.Length)).ToList();
@@ -166,7 +169,17 @@ namespace SampleEntityFramework
 
         private static void P5() {
             using (var db = new BooksDbContext()) {
+                var authors = db.Authors.OrderByDescending(a => a.Birthday);
+                foreach (var author in authors) {
+                    Console.WriteLine("{0} {1:yyyy/MM}", author.Name, author.Birthday);
+                    foreach (var book in author.Books) {
+                        Console.WriteLine(" {0} {1}",
+                            book.Title,book.PublishedYear,
+                            book.Author.Name,book.Author.Birthday);
+                    }
+                    Console.WriteLine();
 
+                }
 
             }
         }
