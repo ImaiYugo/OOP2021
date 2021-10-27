@@ -36,8 +36,6 @@ namespace AddressBook
             this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.infosys202132DataSet = new AddressBook.infosys202132DataSet();
             this.btConnect = new System.Windows.Forms.Button();
-            this.personTableAdapter = new AddressBook.infosys202132DataSetTableAdapters.PersonTableAdapter();
-            this.tableAdapterManager = new AddressBook.infosys202132DataSetTableAdapters.TableAdapterManager();
             this.btNameFilter = new System.Windows.Forms.Button();
             this.tbNameSearch = new System.Windows.Forms.TextBox();
             this.btSave = new System.Windows.Forms.Button();
@@ -49,6 +47,10 @@ namespace AddressBook
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.tbTel = new System.Windows.Forms.TextBox();
             this.tbMemo = new System.Windows.Forms.TextBox();
+            this.btBirthSearch = new System.Windows.Forms.Button();
+            this.personTableAdapter = new AddressBook.infosys202132DataSetTableAdapters.PersonTableAdapter();
+            this.tableAdapterManager = new AddressBook.infosys202132DataSetTableAdapters.TableAdapterManager();
+            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.personDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202132DataSet)).BeginInit();
@@ -126,21 +128,11 @@ namespace AddressBook
             this.btConnect.UseVisualStyleBackColor = true;
             this.btConnect.Click += new System.EventHandler(this.btConnect_Click);
             // 
-            // personTableAdapter
-            // 
-            this.personTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.PersonTableAdapter = this.personTableAdapter;
-            this.tableAdapterManager.UpdateOrder = AddressBook.infosys202132DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // btNameFilter
             // 
-            this.btNameFilter.Location = new System.Drawing.Point(314, 374);
+            this.btNameFilter.Location = new System.Drawing.Point(399, 371);
             this.btNameFilter.Name = "btNameFilter";
-            this.btNameFilter.Size = new System.Drawing.Size(63, 30);
+            this.btNameFilter.Size = new System.Drawing.Size(63, 34);
             this.btNameFilter.TabIndex = 2;
             this.btNameFilter.Text = "名前抽出";
             this.btNameFilter.UseVisualStyleBackColor = true;
@@ -149,7 +141,7 @@ namespace AddressBook
             // tbNameSearch
             // 
             this.tbNameSearch.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbNameSearch.Location = new System.Drawing.Point(177, 374);
+            this.tbNameSearch.Location = new System.Drawing.Point(278, 373);
             this.tbNameSearch.Name = "tbNameSearch";
             this.tbNameSearch.Size = new System.Drawing.Size(115, 28);
             this.tbNameSearch.TabIndex = 3;
@@ -229,11 +221,39 @@ namespace AddressBook
             this.tbMemo.Size = new System.Drawing.Size(203, 93);
             this.tbMemo.TabIndex = 6;
             // 
+            // btBirthSearch
+            // 
+            this.btBirthSearch.Location = new System.Drawing.Point(627, 373);
+            this.btBirthSearch.Name = "btBirthSearch";
+            this.btBirthSearch.Size = new System.Drawing.Size(77, 30);
+            this.btBirthSearch.TabIndex = 2;
+            this.btBirthSearch.Text = "誕生日抽出";
+            this.btBirthSearch.UseVisualStyleBackColor = true;
+            this.btBirthSearch.Click += new System.EventHandler(this.btBirthSearch_Click);
+            // 
+            // personTableAdapter
+            // 
+            this.personTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.PersonTableAdapter = this.personTableAdapter;
+            this.tableAdapterManager.UpdateOrder = AddressBook.infosys202132DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dtpBirth
+            // 
+            this.dtpBirth.Location = new System.Drawing.Point(484, 379);
+            this.dtpBirth.Name = "dtpBirth";
+            this.dtpBirth.Size = new System.Drawing.Size(137, 19);
+            this.dtpBirth.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 450);
+            this.Controls.Add(this.dtpBirth);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.tbTel);
             this.Controls.Add(this.tbMemo);
@@ -244,6 +264,7 @@ namespace AddressBook
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.tbNameSearch);
+            this.Controls.Add(this.btBirthSearch);
             this.Controls.Add(this.btNameFilter);
             this.Controls.Add(this.btConnect);
             this.Controls.Add(this.personDataGridView);
@@ -282,6 +303,8 @@ namespace AddressBook
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.TextBox tbTel;
         private System.Windows.Forms.TextBox tbMemo;
+        private System.Windows.Forms.Button btBirthSearch;
+        private System.Windows.Forms.DateTimePicker dtpBirth;
     }
 }
 

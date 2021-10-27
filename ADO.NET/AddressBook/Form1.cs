@@ -54,10 +54,18 @@ namespace AddressBook
         }
 
         private void personDataGridView_SelectionChanged(object sender, EventArgs e) {
-            tbName.Text = personDataGridView.CurrentRow.Cells[1].Value.ToString();
-            dtpDate.Value = (DateTime)personDataGridView.CurrentRow.Cells[2].Value;
-            tbTel.Text = personDataGridView.CurrentRow.Cells[3].Value.ToString();
-            tbMemo.Text = personDataGridView.CurrentRow.Cells[4].Value.ToString();
+
+            if (personDataGridView.Rows.Count != 0) {
+
+                tbName.Text = personDataGridView.CurrentRow.Cells[1].Value.ToString();
+                dtpDate.Value = (DateTime)personDataGridView.CurrentRow.Cells[2].Value;
+                tbTel.Text = personDataGridView.CurrentRow.Cells[3].Value.ToString();
+                tbMemo.Text = personDataGridView.CurrentRow.Cells[4].Value.ToString();
+            }
+        }
+
+        private void btBirthSearch_Click(object sender, EventArgs e) {
+            this.personTableAdapter.FillByBirth(this.infosys202132DataSet.Person, dtpBirth.Value.ToString());
         }
     }
 }
