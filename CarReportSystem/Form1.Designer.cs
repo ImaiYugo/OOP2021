@@ -137,7 +137,7 @@ namespace CarReportSystem {
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(434, 24);
+            this.label7.Location = new System.Drawing.Point(434, 37);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 12);
             this.label7.TabIndex = 2;
@@ -268,16 +268,16 @@ namespace CarReportSystem {
             // pbPicture
             // 
             this.pbPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbPicture.Location = new System.Drawing.Point(436, 49);
+            this.pbPicture.Location = new System.Drawing.Point(436, 62);
             this.pbPicture.Name = "pbPicture";
-            this.pbPicture.Size = new System.Drawing.Size(257, 197);
+            this.pbPicture.Size = new System.Drawing.Size(257, 184);
             this.pbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPicture.TabIndex = 8;
             this.pbPicture.TabStop = false;
             // 
             // btPictureOpen
             // 
-            this.btPictureOpen.Location = new System.Drawing.Point(483, 18);
+            this.btPictureOpen.Location = new System.Drawing.Point(483, 32);
             this.btPictureOpen.Name = "btPictureOpen";
             this.btPictureOpen.Size = new System.Drawing.Size(102, 25);
             this.btPictureOpen.TabIndex = 9;
@@ -287,7 +287,7 @@ namespace CarReportSystem {
             // 
             // btPictureDelete
             // 
-            this.btPictureDelete.Location = new System.Drawing.Point(591, 18);
+            this.btPictureDelete.Location = new System.Drawing.Point(591, 31);
             this.btPictureDelete.Name = "btPictureDelete";
             this.btPictureDelete.Size = new System.Drawing.Size(102, 25);
             this.btPictureDelete.TabIndex = 9;
@@ -382,6 +382,7 @@ namespace CarReportSystem {
             this.carReportDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.carReportDataGridView.Size = new System.Drawing.Size(628, 197);
             this.carReportDataGridView.TabIndex = 10;
+            this.carReportDataGridView.SelectionChanged += new System.EventHandler(this.carReportDataGridView_SelectionChanged);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -527,7 +528,6 @@ namespace CarReportSystem {
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "位置";
             this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Yu Gothic UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
