@@ -16,7 +16,7 @@ namespace CarReportSystem {
 
         public fmMain() {
             InitializeComponent();
-            dgvRegistData.DataSource = listCarReport;
+            //dgvRegistData.DataSource = listCarReport;
         }
 
         private void btExit_Click(object sender, EventArgs e) {
@@ -120,23 +120,36 @@ namespace CarReportSystem {
         }
 
         private void btDataDelete_Click(object sender, EventArgs e) {
-            if (dgvRegistData.CurrentCell != null) {
-                listCarReport.RemoveAt(dgvRegistData.CurrentRow.Index);
-            }
+
+        //    if (dgvRegistData.CurrentCell != null) {
+        //        listCarReport.RemoveAt(dgvRegistData.CurrentRow.Index);
+        //    }
+        //}
+
+        //private void btDataCorrect_Click(object sender, EventArgs e) {
+        //    listCarReport[dgvRegistData.CurrentRow.Index].UpDate(dtpDate.Value,
+        //                                                        cbAuther.Text,
+        //                                                        selectedGroup(),
+        //                                                        cbCarName.Text,
+        //                                                        tbReport.Text,
+        //                                                        pbPicture.Image
+        //                                                        );
+        //    dgvRegistData.Refresh(); //コントロールの強制再描画
         }
 
-        private void btDataCorrect_Click(object sender, EventArgs e) {
-            listCarReport[dgvRegistData.CurrentRow.Index].UpDate(dtpDate.Value,
-                                                                cbAuther.Text,
-                                                                selectedGroup(),
-                                                                cbCarName.Text,
-                                                                tbReport.Text,
-                                                                pbPicture.Image
-                                                                );
-            dgvRegistData.Refresh(); //コントロールの強制再描画
-        }
+        private void btUpdate_Click(object sender, EventArgs e) {
+            if (carReportDataGridView.CurrentRow == null) return;
+            carReportDataGridView.CurrentRow.Cells[1].Value = dtpDate.Value;    //日付
+            carReportDataGridView.CurrentRow.Cells[2].Value = cbAuther.Text;    //記録者
+            carReportDataGridView.CurrentRow.Cells[3].Value = selectedGroup();  //メーカー
+            carReportDataGridView.CurrentRow.Cells[4].Value = cbCarName.Text;   //車名
+            carReportDataGridView.CurrentRow.Cells[5].Value = tbReport.Text;    //レポート
 
-        private void btSave_Click(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202132DataSet);
+
+#if false
             if (sfdFileSave.ShowDialog() == DialogResult.OK) {
                 // バイナリ形式でシリアル化
                 try {
@@ -151,39 +164,49 @@ namespace CarReportSystem {
                 }
                 }
                 
+#endif
         }
 
-        private void btOpen_Click(object sender, EventArgs e) {
-            if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
-                // バイナリ形式で逆シリアル化
-                try {
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(ofdFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
-                        // 逆シリアル化して読み込む
-                        listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
-                        dgvRegistData.DataSource = null;
-                        dgvRegistData.DataSource = listCarReport;
-                    }                
-                }
-                catch(Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
 
-                //読み込んだデータを各コンボボックスに登録する
-                foreach (var item in listCarReport) {
-                    setCbAuther(item.Auther);
-                    setCbCarName(item.CarName);
-                }
 
-                //データグリッドビューから取得
-                for (int i = 0; i < dgvRegistData.RowCount; i++) {
-                    setCbAuther(dgvRegistData.Rows[i].Cells[1].Value.ToString());
-                    setCbCarName(dgvRegistData.Rows[i].Cells[1].Value.ToString());
-                }
-            }            
+        private void btConnect_Click(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202132DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableAdapter.Fill(this.infosys202132DataSet.CarReport);
+
+
+            //if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
+            //    // バイナリ形式で逆シリアル化
+            //    try {
+            //        var bf = new BinaryFormatter();
+            //        using (FileStream fs = File.Open(ofdFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
+            //            // 逆シリアル化して読み込む
+            //            listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
+            //            dgvRegistData.DataSource = null;
+            //            dgvRegistData.DataSource = listCarReport;
+            //        }                
+            //    }
+            //    catch(Exception ex) {
+            //        MessageBox.Show(ex.Message);
+            //    }
+
+            //    //読み込んだデータを各コンボボックスに登録する
+            //    foreach (var item in listCarReport) {
+            //        setCbAuther(item.Auther);
+            //        setCbCarName(item.CarName);
+            //    }
+
+            //    //データグリッドビューから取得
+            //    for (int i = 0; i < dgvRegistData.RowCount; i++) {
+            //        setCbAuther(dgvRegistData.Rows[i].Cells[1].Value.ToString());
+            //        setCbCarName(dgvRegistData.Rows[i].Cells[1].Value.ToString());
+            //    }
+            //}            
         }
         private void fmMain_Load(object sender, EventArgs e) {
-            dgvRegistData.Columns[5].Visible = false;
+            
+            
+           // dgvRegistData.Columns[5].Visible = false;
+
         }
     }
 }
