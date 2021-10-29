@@ -33,29 +33,6 @@ namespace CarReportSystem {
             pbPicture.Image = null;
         }
 
-        //追加ボタン
-        private void btDataAdd_Click(object sender, EventArgs e) {
-
-            if (cbAuther.Text == "" || cbCarName.Text == "") {
-                MessageBox.Show("入力されていません");
-                return;
-            }
-
-            CarReport carReport = new CarReport {
-                Date = dtpDate.Value,
-                Auther = cbAuther.Text,
-                Maker = selectedGroup(),
-                CarName = cbCarName.Text,
-                Report = tbReport.Text,
-                Picture = pbPicture.Image
-            };
-            listCarReport.Add(carReport);   //１レコード追加
-
-            //コンボボックスの履歴登録
-            setCbAuther(cbAuther.Text);
-            setCbCarName(cbCarName.Text);
-        }
-
         //選択されているメーカーの列挙型を返す
         private CarReport.MakerGroup selectedGroup() {
 
@@ -81,19 +58,7 @@ namespace CarReportSystem {
         }
 
         private void dgvRegistData_CellClick(object sender, DataGridViewCellEventArgs e) {
-            if (e.RowIndex == -1)
-                return;
 
-            //選択された行のデータを取得
-            CarReport selectedCar = listCarReport[e.RowIndex];
-
-            //取得したデータ項目を各コントロールへ設定
-            dtpDate.Value = selectedCar.Date;
-            cbAuther.Text = selectedCar.Auther;
-            setMakerRadioButton(selectedCar.Maker);
-            cbCarName.Text = selectedCar.CarName;
-            tbReport.Text = selectedCar.Report;
-            pbPicture.Image = selectedCar.Picture;
         }
 
         private void setMakerRadioButton(CarReport.MakerGroup mg) {
@@ -117,24 +82,6 @@ namespace CarReportSystem {
                     rbOther.Checked = true;
                     break;
             }
-        }
-
-        private void btDataDelete_Click(object sender, EventArgs e) {
-
-        //    if (dgvRegistData.CurrentCell != null) {
-        //        listCarReport.RemoveAt(dgvRegistData.CurrentRow.Index);
-        //    }
-        //}
-
-        //private void btDataCorrect_Click(object sender, EventArgs e) {
-        //    listCarReport[dgvRegistData.CurrentRow.Index].UpDate(dtpDate.Value,
-        //                                                        cbAuther.Text,
-        //                                                        selectedGroup(),
-        //                                                        cbCarName.Text,
-        //                                                        tbReport.Text,
-        //                                                        pbPicture.Image
-        //                                                        );
-        //    dgvRegistData.Refresh(); //コントロールの強制再描画
         }
 
         private void btUpdate_Click(object sender, EventArgs e) {
@@ -168,54 +115,33 @@ namespace CarReportSystem {
 #endif
         }
 
-
-
         private void btConnect_Click(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202132DataSet.CarReport' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableAdapter.Fill(this.infosys202132DataSet.CarReport);
-
-
-            //if (ofdFileOpen.ShowDialog() == DialogResult.OK) {
-            //    // バイナリ形式で逆シリアル化
-            //    try {
-            //        var bf = new BinaryFormatter();
-            //        using (FileStream fs = File.Open(ofdFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
-            //            // 逆シリアル化して読み込む
-            //            listCarReport = (BindingList<CarReport>)bf.Deserialize(fs);
-            //            dgvRegistData.DataSource = null;
-            //            dgvRegistData.DataSource = listCarReport;
-            //        }                
-            //    }
-            //    catch(Exception ex) {
-            //        MessageBox.Show(ex.Message);
-            //    }
-
-            //    //読み込んだデータを各コンボボックスに登録する
-            //    foreach (var item in listCarReport) {
-            //        setCbAuther(item.Auther);
-            //        setCbCarName(item.CarName);
-            //    }
-
-            //    //データグリッドビューから取得
-            //    for (int i = 0; i < dgvRegistData.RowCount; i++) {
-            //        setCbAuther(dgvRegistData.Rows[i].Cells[1].Value.ToString());
-            //        setCbCarName(dgvRegistData.Rows[i].Cells[1].Value.ToString());
-            //    }
-            //}            
+               
+                for (int i = 0; i < carReportDataGridView.RowCount; i++) {
+                    setCbAuther(carReportDataGridView.CurrentRow.Cells[1].Value.ToString());
+                    setCbAuther(carReportDataGridView.CurrentRow.Cells[3].Value.ToString());
+                }
+           
         }
 
         private void fmMain_Load(object sender, EventArgs e) {
-            
-            
-           // dgvRegistData.Columns[5].Visible = false;
-
+            carReportDataGridView.Columns[0].Visible = false;
+            carReportDataGridView.Columns[1].HeaderText = "日付";
+            carReportDataGridView.Columns[2].HeaderText = "記録者";
+            carReportDataGridView.Columns[3].HeaderText = "メーカー";
+            carReportDataGridView.Columns[4].HeaderText = "車名";
+            carReportDataGridView.Columns[5].HeaderText = "レポート";
+            carReportDataGridView.Columns[6].HeaderText = "画像";
         }
 
         private void carReportDataGridView_SelectionChanged(object sender, EventArgs e) {
 
             if (carReportDataGridView.CurrentRow == null) return;
             try {
-                
+
+                dtpDate.Value = (DateTime)carReportDataGridView.CurrentRow.Cells[1].Value;                       //日付
                 cbAuther.Text = carReportDataGridView.CurrentRow.Cells[2].Value.ToString();                      //記録者
                 setMakerRadioButton((CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup)
                 ,carReportDataGridView.CurrentRow.Cells[3].Value.ToString()));                                   //メーカー(文字列→列挙型)
@@ -227,8 +153,6 @@ namespace CarReportSystem {
             catch (Exception) {
                 pbPicture.Image = null;
             }
-            dtpDate.Value = (DateTime)carReportDataGridView.CurrentRow.Cells[1].Value;                           //日付
-
         }
 
         // バイト配列をImageオブジェクトに変換
@@ -244,5 +168,8 @@ namespace CarReportSystem {
             return b;
         }
 
+        private void carReportDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) {
+
+        }
     }
 }
