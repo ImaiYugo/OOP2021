@@ -57,10 +57,6 @@ namespace CarReportSystem {
             }
         }
 
-        private void dgvRegistData_CellClick(object sender, DataGridViewCellEventArgs e) {
-
-        }
-
         private void setMakerRadioButton(CarReport.MakerGroup mg) {
             switch (mg) {
                 case CarReport.MakerGroup.トヨタ:
@@ -97,22 +93,6 @@ namespace CarReportSystem {
             this.carReportBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202132DataSet);
 
-#if false
-            if (sfdFileSave.ShowDialog() == DialogResult.OK) {
-                // バイナリ形式でシリアル化
-                try {
-                    var bf = new BinaryFormatter();
-
-                    using (FileStream fs = File.Open(sfdFileSave.FileName, FileMode.Create)) {
-                        bf.Serialize(fs, listCarReport);
-                    }
-                }
-                catch(Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
-                }
-                
-#endif
         }
 
         private void btConnect_Click(object sender, EventArgs e) {
@@ -133,32 +113,45 @@ namespace CarReportSystem {
             carReportDataGridView.Columns[3].HeaderText = "メーカー";
             carReportDataGridView.Columns[4].HeaderText = "車名";
             carReportDataGridView.Columns[5].HeaderText = "レポート";
-            carReportDataGridView.Columns[6].HeaderText = "画像";
+            //carReportDataGridView.Columns[6].HeaderText = "画像";
+            carReportDataGridView.Columns[6].Visible = false;
+            ssErrorLabel.Text = "";
         }
 
         private void carReportDataGridView_SelectionChanged(object sender, EventArgs e) {
 
             if (carReportDataGridView.CurrentRow == null) return;
             try {
-
+                ssErrorLabel.Text = "";
                 dtpDate.Value = (DateTime)carReportDataGridView.CurrentRow.Cells[1].Value;                       //日付
                 cbAuther.Text = carReportDataGridView.CurrentRow.Cells[2].Value.ToString();                      //記録者
-                setMakerRadioButton((CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup)
-                ,carReportDataGridView.CurrentRow.Cells[3].Value.ToString()));                                   //メーカー(文字列→列挙型)
+                //setMakerRadioButton((CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup)
+                //,carReportDataGridView.CurrentRow.Cells[3].Value.ToString()));                                   //メーカー(文字列→列挙型)
                 cbCarName.Text = carReportDataGridView.CurrentRow.Cells[4].Value.ToString();                     //車名
                 tbReport.Text = carReportDataGridView.CurrentRow.Cells[5].Value.ToString();                      //レポート
+
+                var mk = (CarReport.MakerGroup)Enum.Parse(typeof(CarReport.MakerGroup),
+                carReportDataGridView.CurrentRow.Cells[3].Value.ToString());
+                setMakerRadioButton(mk);
                 pbPicture.Image = ByteArrayToImage((byte[])carReportDataGridView.CurrentRow.Cells[6].Value);     //画像
 
             }
-            catch (Exception) {
+            catch (InvalidCastException) {
                 pbPicture.Image = null;
+            }catch(Exception ex) {
+                //MessageBox.Show(ex.Message);
+                ssErrorLabel.Text = ex.Message;
             }
         }
 
         // バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage(byte[] b) {
-            ImageConverter imgconv = new ImageConverter();
-            Image img = (Image)imgconv.ConvertFrom(b);
+
+            Image img = null;
+            if(b.Length > 0) {
+                ImageConverter imgconv = new ImageConverter();
+                img = (Image)imgconv.ConvertFrom(b);
+            }         
             return img;
         }
         // Imageオブジェクトをバイト配列に変換
@@ -170,6 +163,15 @@ namespace CarReportSystem {
 
         private void carReportDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e) {
 
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e) {
+            dtpDate.Value = DateTime.Now;
+            cbAuther.Text = "";
+            cbCarName.Text = "";
+            tbReport.Text = "";
+            setMakerRadioButton(CarReport.MakerGroup.その他);
+            pbPicture.Image = null;
         }
     }
 }
