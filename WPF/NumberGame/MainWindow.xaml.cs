@@ -20,12 +20,66 @@ namespace NumberGame
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private Random random = new Random();
+        private int answerNum;
+        private const int Rows = 5;     //列
+        private const int Columns = 5;   //行
+
+        private SolidColorBrush selectedButtonColor = new SolidColorBrush(Colors.Yellow);
+        private SolidColorBrush hitButtonColor = new SolidColorBrush(Colors.Red);
+
         public MainWindow() {
-            InitializeComponent();
+            InitializeComponent();           
+        }
+        //ロード時に一度だけ実行される
+        private void MainDisp_Loaded(object sender,RoutedEventArgs e) {
+
+            List<Button> buttons = new List<Button>();
+
+            //正解を取得
+            answerNum = random.Next(Rows * Columns) + 1;
+
+            //行
+            for (int i = 0; i < Rows; i++) {
+                grid.RowDefinitions.Add(new RowDefinition());
+            }
+            //列
+            for (int i = 0; i < Columns; i++) {
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            int count = 0;
+            for (int i = 0; i < Rows; i++) {
+                for (int j = 0; j < Columns; j++) {
+
+                    var bt = new Button();
+                    bt.Width = MainForm.Width/Columns;
+                    bt.Height = MainForm.Height/Rows;
+
+                    bt.Content = j + count + 1;
+
+
+
+                    bt.FontSize = 20;
+                    bt.Click += Button_Click;
+                    Grid.SetRow(bt, i);
+                    Grid.SetColumn(bt, j);
+                    buttons.Add(bt);
+                }
+            }
+            buttons.ForEach(bt => grid.Children.Add(bt));
+            MainForm.Height += textDisp.Height + 50;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            SolidColorBrush 
+            //Button button = (Button)sender;
+            //switch (button.Tag.ToString()) {
+            //    case "1"
+
+            //        break;
+            //}
+            Button selectedButton = (Button)sender;
+            int num = (int)selectedButton.Content;
         }
     }
 }

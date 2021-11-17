@@ -5,50 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NumberGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="630" Width="600">
-    <Grid>
+        x:Name="MainForm"
+        Title="MainWindow" Height="600" Width="513" Loaded="MainDisp_Loaded">
+    <!--<Grid Margin="0,0,-8,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="bt1" Grid.Column="0" Grid.Row="1" Content="1" FontSize="50" Click="Button_Click"/>
-        <Button x:Name="bt2" Grid.Column="1" Grid.Row="1" Content="2" FontSize="50" Click="Button_Click"/>
-        <Button x:Name="bt3" Grid.Column="2" Grid.Row="1" Content="3" FontSize="50" Click="Button_Click"/>
-        <Button x:Name="bt4" Grid.Column="3" Grid.Row="1" Content="4" FontSize="50" Click="Button_Click"/>
-        <Button x:Name="bt5" Grid.Column="4" Grid.Row="1" Content="5" FontSize="50" Click="Button_Click"/>
-        <Button x:Name="bt6" Grid.Column="0" Grid.Row="2" Content="6" FontSize="50"/>
-        <Button x:Name="bt7" Grid.Column="1" Grid.Row="2" Content="7" FontSize="50"/>
-        <Button x:Name="bt8" Grid.Column="2" Grid.Row="2" Content="8" FontSize="50"/>
-        <Button x:Name="bt9" Grid.Column="3" Grid.Row="2" Content="9" FontSize="50"/>
-        <Button x:Name="bt10" Grid.Column="4" Grid.Row="2" Content="10" FontSize="50"/>
-        <Button x:Name="bt11" Grid.Column="0" Grid.Row="3" Content="11" FontSize="50"/>
-        <Button x:Name="bt12" Grid.Column="1" Grid.Row="3" Content="12" FontSize="50"/>
-        <Button x:Name="bt13" Grid.Column="2" Grid.Row="3" Content="13" FontSize="50"/>
-        <Button x:Name="bt14" Grid.Column="3" Grid.Row="3" Content="14" FontSize="50"/>
-        <Button x:Name="bt15" Grid.Column="4" Grid.Row="3" Content="15" FontSize="50"/>
-        <Button x:Name="bt16" Grid.Column="0" Grid.Row="4" Content="16" FontSize="50"/>
-        <Button x:Name="bt17" Grid.Column="1" Grid.Row="4" Content="17" FontSize="50"/>
-        <Button x:Name="bt18" Grid.Column="2" Grid.Row="4" Content="18" FontSize="50"/>
-        <Button x:Name="bt19" Grid.Column="3" Grid.Row="4" Content="19" FontSize="50"/>
-        <Button x:Name="bt20" Grid.Column="4" Grid.Row="4" Content="20" FontSize="50"/>
-        <Button x:Name="bt21" Grid.Column="0" Grid.Row="5" Content="21" FontSize="50"/>
-        <Button x:Name="bt22" Grid.Column="1" Grid.Row="5" Content="22" FontSize="50"/>
-        <Button x:Name="bt23" Grid.Column="2" Grid.Row="5" Content="23" FontSize="50"/>
-        <Button x:Name="bt24" Grid.Column="3" Grid.Row="5" Content="24" FontSize="50"/>
-        <Button x:Name="bt25" Grid.Column="4" Grid.Row="5" Content="25" FontSize="50"/>
+        <Button x:Name="bt1" Grid.Column="0" Grid.Row="1" Content="1" FontSize="50" Tag="1" Click="Button_Click"/>
+        <Button x:Name="bt2" Grid.Column="1" Grid.Row="1" Content="2" FontSize="50" Tag="2" Click="Button_Click"/>
+        <Button x:Name="bt3" Grid.Column="2" Grid.Row="1" Content="3" FontSize="50" Tag="3" Click="Button_Click"/>
+        <Button x:Name="bt4" Grid.Column="3" Grid.Row="1" Content="4" FontSize="50" Tag="4" Click="Button_Click"/>
+        <Button x:Name="bt5" Grid.Column="4" Grid.Row="1" Content="5" FontSize="50" Tag="5" Click="Button_Click"/>
+        <Button x:Name="bt6" Grid.Column="0" Grid.Row="2" Content="6" FontSize="50" Tag="6" Click="Button_Click"/>
+        <Button x:Name="bt7" Grid.Column="1" Grid.Row="2" Content="7" FontSize="50" Tag="7" Click="Button_Click"/>
+        <Button x:Name="bt8" Grid.Column="2" Grid.Row="2" Content="8" FontSize="50" Tag="8" Click="Button_Click"/>
+        <Button x:Name="bt9" Grid.Column="3" Grid.Row="2" Content="9" FontSize="50" Tag="9" Click="Button_Click"/>
+        <Button x:Name="bt10" Grid.Column="4" Grid.Row="2" Content="10" FontSize="50" Tag="10" Click="Button_Click"/>
+        <Button x:Name="bt11" Grid.Column="0" Grid.Row="3" Content="11" FontSize="50" Tag="11" Click="Button_Click"/>
+        <Button x:Name="bt12" Grid.Column="1" Grid.Row="3" Content="12" FontSize="50" Tag="12" Click="Button_Click"/>
+        <Button x:Name="bt13" Grid.Column="2" Grid.Row="3" Content="13" FontSize="50" Tag="13" Click="Button_Click"/>
+        <Button x:Name="bt14" Grid.Column="3" Grid.Row="3" Content="14" FontSize="50" Tag="14" Click="Button_Click"/>
+        <Button x:Name="bt15" Grid.Column="4" Grid.Row="3" Content="15" FontSize="50" Tag="15" Click="Button_Click"/>
+        <Button x:Name="bt16" Grid.Column="0" Grid.Row="4" Content="16" FontSize="50" Tag="16" Click="Button_Click"/>
+        <Button x:Name="bt17" Grid.Column="1" Grid.Row="4" Content="17" FontSize="50" Tag="17" Click="Button_Click"/>
+        <Button x:Name="bt18" Grid.Column="2" Grid.Row="4" Content="18" FontSize="50" Tag="18" Click="Button_Click"/>
+        <Button x:Name="bt19" Grid.Column="3" Grid.Row="4" Content="19" FontSize="50" Tag="19" Click="Button_Click"/>
+        <Button x:Name="bt20" Grid.Column="4" Grid.Row="4" Content="20" FontSize="50" Tag="20" Click="Button_Click"/>
+        <Button x:Name="bt21" Grid.Column="0" Grid.Row="5" Content="21" FontSize="50" Tag="21" Click="Button_Click"/>
+        <Button x:Name="bt22" Grid.Column="1" Grid.Row="5" Content="22" FontSize="50" Tag="22" Click="Button_Click"/>
+        <Button x:Name="bt23" Grid.Column="2" Grid.Row="5" Content="23" FontSize="50" Tag="1" Click="Button_Click"/>
+        <Button x:Name="bt24" Grid.Column="3" Grid.Row="5" Content="24" FontSize="50" Tag="1" Click="Button_Click"/>
+        <Button x:Name="bt25" Grid.Column="4" Grid.Row="5" Content="25" FontSize="50" Tag="1" Click="Button_Click"/>
+        <TextBlock x:Name="tbText" Grid.ColumnSpan="5" Height="43" Margin="10,111,10,-53" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30"/>-->
+        <StackPanel>
+        <Grid x:Name="grid"/>
+        <TextBlock x:Name="textDisp" Height="30" FontSize="15"
+                   TextWrapping="Wrap" Text="TextBlock"/>
+    </StackPanel>
         
-    </Grid>
 </Window>
