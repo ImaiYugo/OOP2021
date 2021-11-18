@@ -30,10 +30,11 @@ namespace NumberGame
         private SolidColorBrush hitButtonColor = new SolidColorBrush(Colors.Red);
 
         public MainWindow() {
-            InitializeComponent();           
+            InitializeComponent();
+            answerNum = random.Next(1, 26);
         }
         //ロード時に一度だけ実行される
-        private void MainDisp_Loaded(object sender,RoutedEventArgs e) {
+        private void MainDisp_Loaded(object sender, RoutedEventArgs e) {
 
             List<Button> buttons = new List<Button>();
 
@@ -48,17 +49,13 @@ namespace NumberGame
             for (int i = 0; i < Columns; i++) {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
-            int count = 0;
+
             for (int i = 0; i < Rows; i++) {
                 for (int j = 0; j < Columns; j++) {
-
                     var bt = new Button();
-                    bt.Width = MainForm.Width/Columns;
-                    bt.Height = MainForm.Height/Rows;
-
-                    bt.Content = j + count + 1;
-
-
+                    bt.Width = MainForm.Width / Columns;
+                    bt.Height = MainForm.Height / Rows;
+                    bt.Content = i * Rows + (j + 1);
 
                     bt.FontSize = 20;
                     bt.Click += Button_Click;
@@ -78,8 +75,21 @@ namespace NumberGame
 
             //        break;
             //}
+
             Button selectedButton = (Button)sender;
             int num = (int)selectedButton.Content;
+            if (num == answerNum) {
+                textDisp.Text = "正解です";
+                Background = hitButtonColor;
+            }
+            if (num < answerNum) {
+                textDisp.Text = "数字が小さいです";
+                Background = selectedButtonColor;
+            }
+            if (num > answerNum) {
+                textDisp.Text = "数字が大きいです";
+                Background = selectedButtonColor;
+            }
         }
     }
 }
