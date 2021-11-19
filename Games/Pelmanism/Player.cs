@@ -51,7 +51,7 @@ namespace Pelmanism
             BeforeOpenCardIndex1 = NowOpenCardIndex1;
             BeforeOpenCardIndex2 = NowOpenCardIndex2;
             NowOpenCardIndex1 = -1;
-            NowOpenCardIndex2 = -2;
+            NowOpenCardIndex2 = -1;
             OpenCounter = 0;
         }
     }
