@@ -79,16 +79,17 @@ namespace NumberGame
             Button selectedButton = (Button)sender;
             int num = (int)selectedButton.Content;
             if (num == answerNum) {
-                textDisp.Text = "正解です";
-                Background = hitButtonColor;
+                textDisp.Text = "正解です!";
+                selectedButton.Background = hitButtonColor;
+
             }
             if (num < answerNum) {
                 textDisp.Text = "数字が小さいです";
-                Background = selectedButtonColor;
+                selectedButton.Background = selectedButtonColor;
             }
             if (num > answerNum) {
                 textDisp.Text = "数字が大きいです";
-                Background = selectedButtonColor;
+                selectedButton.Background = selectedButtonColor;
             }
         }
     }
