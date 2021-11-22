@@ -160,16 +160,19 @@ namespace Pelmanism
         /// <param name="playingCards"></param>
         private void ShuffleCard(Card[] playingCards) {
             Random random = new Random();
-            //for (int i = 0; i < playingCards.Length; i++) {
-            //    int count = random.Next(playingCards.Length);
-            //    var n = playingCards[i];
-            //    playingCards[i] = playingCards[count];
-            //    playingCards[count] = n;
+            for (int i = 0; i < playingCards.Length; i++) {
+                int count = random.Next(playingCards.Length);
+                var tmp = playingCards[count];
+                playingCards[count] = playingCards[i];
+                playingCards[i] = tmp;
+            }
+            //while (n > 1) {
+            //    n--;
+            //    int count = random.Next(playingCards.Count());
+            //    var tmp = playingCards[count];
+            //    playingCards[count] = playingCards[n];
+            //    playingCards[n] = tmp;
             //}
-
-
-
-
         }
 
 
