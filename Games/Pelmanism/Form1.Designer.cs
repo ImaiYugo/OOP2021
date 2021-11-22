@@ -38,16 +38,16 @@ namespace Pelmanism
             this.labelSec.AutoSize = true;
             this.labelSec.Location = new System.Drawing.Point(12, 9);
             this.labelSec.Name = "labelSec";
-            this.labelSec.Size = new System.Drawing.Size(47, 12);
+            this.labelSec.Size = new System.Drawing.Size(55, 12);
             this.labelSec.TabIndex = 0;
-            this.labelSec.Text = "0秒経過";
+            this.labelSec.Text = "残り100秒";
             // 
             // labelGuidance
             // 
             this.labelGuidance.AutoSize = true;
             this.labelGuidance.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelGuidance.ForeColor = System.Drawing.Color.Red;
-            this.labelGuidance.Location = new System.Drawing.Point(66, 9);
+            this.labelGuidance.Location = new System.Drawing.Point(73, 9);
             this.labelGuidance.Name = "labelGuidance";
             this.labelGuidance.Size = new System.Drawing.Size(41, 12);
             this.labelGuidance.TabIndex = 1;

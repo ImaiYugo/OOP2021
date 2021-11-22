@@ -148,37 +148,39 @@ namespace Pelmanism
                 card.Close();
             }
             buttonStart.Enabled = false; //スタートボタン選択不可
-            gameSec = 0;
+            gameSec = 100;
             timer1.Start();
 
             labelGuidance.Text = "クリックしてカードをめくってください";
         }
 
         /// <summary>
-        /// 
+        /// シャッフル
         /// </summary>
         /// <param name="playingCards"></param>
         private void ShuffleCard(Card[] playingCards) {
             Random random = new Random();
-            for (int i = 0; i < playingCards.Length; i++) {
-                int count = random.Next(playingCards.Length);
-                var tmp = playingCards[count];
-                playingCards[count] = playingCards[i];
-                playingCards[i] = tmp;
+            int n = playingCards.Length - 1;
+            while (n > 0) {
+                int r = random.Next(0, n);
+                string tmp = playingCards[n].Picture;
+                playingCards[n].Picture = playingCards[r].Picture;
+                playingCards[r].Picture = tmp;
+                n--;
             }
-            //while (n > 1) {
-            //    n--;
-            //    int count = random.Next(playingCards.Count());
-            //    var tmp = playingCards[count];
-            //    playingCards[count] = playingCards[n];
-            //    playingCards[n] = tmp;
-            //}
-        }
-
+    }
 
         private void timer1_Tick(object sender, EventArgs e) {
-            gameSec++;
-            labelSec.Text = gameSec + "秒経過";
+            gameSec--;
+            labelSec.Text = "残り" + gameSec + "秒";
+            if (gameSec == 0) {
+                timer1.Stop();
+                foreach (var card in playingCards) {
+                    card.Open();
+                    buttonStart.Enabled = true;
+                    labelGuidance.Text = "失敗!もう一度挑戦してください";
+                }
+            }
         }
     }
 }
