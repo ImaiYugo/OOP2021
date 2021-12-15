@@ -133,6 +133,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pelmanism", "Games\Pelmanis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsWar", "\\172.16.42.1\学生共有\#infosys2021\オブジェクト指向プログラミング\３期目\Games\CardsWar\CardsWar.csproj", "{3E9646CA-9323-473A-B279-61AFF61BF0E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test1", "WPF\test1\test1.csproj", "{3EF39DC1-6235-4E96-BA78-2B0F1CC398CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test3", "WPF\test3\test3.csproj", "{DF734A70-3BA5-4E9F-9240-B858AB90F9F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -303,6 +307,14 @@ Global
 		{3E9646CA-9323-473A-B279-61AFF61BF0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9646CA-9323-473A-B279-61AFF61BF0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E9646CA-9323-473A-B279-61AFF61BF0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EF39DC1-6235-4E96-BA78-2B0F1CC398CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF39DC1-6235-4E96-BA78-2B0F1CC398CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EF39DC1-6235-4E96-BA78-2B0F1CC398CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EF39DC1-6235-4E96-BA78-2B0F1CC398CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF734A70-3BA5-4E9F-9240-B858AB90F9F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF734A70-3BA5-4E9F-9240-B858AB90F9F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF734A70-3BA5-4E9F-9240-B858AB90F9F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF734A70-3BA5-4E9F-9240-B858AB90F9F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -354,6 +366,7 @@ Global
 		{9E4C1327-32C6-4EC3-A5AD-3951BA591202} = {281A5431-F71C-4CC2-AC58-2430BEDC9D68}
 		{68CCB7E6-01D1-476C-A262-C153D179C0A9} = {73D34140-70C8-4B42-AF0B-27A851CE97EA}
 		{3E9646CA-9323-473A-B279-61AFF61BF0E4} = {73D34140-70C8-4B42-AF0B-27A851CE97EA}
+		{3EF39DC1-6235-4E96-BA78-2B0F1CC398CB} = {281A5431-F71C-4CC2-AC58-2430BEDC9D68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADDF54F7-58B4-46A9-83DB-7EABF8BCD10D}
